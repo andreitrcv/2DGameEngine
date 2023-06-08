@@ -140,7 +140,7 @@ void Game::update() {
 	ss << "TANK position: " << tankPos;
 	label.getComponent<UILabel>().SetLabelText(ss.str(), "arial");
 
-
+	int a;
 	manager.refresh();
 	manager.update(); // update all entities, so all components
 
