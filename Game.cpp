@@ -136,7 +136,6 @@ void Game::update() {
 
 	SDL_Rect tankCol = tank.getComponent<ColliderComponent>().collider;
 	Vector2D tankPos = tank.getComponent<TransformComponent>().position;
-
 	std::stringstream ss;
 	ss << "TANK position: " << tankPos;
 	label.getComponent<UILabel>().SetLabelText(ss.str(), "arial");
