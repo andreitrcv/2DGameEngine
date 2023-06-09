@@ -141,7 +141,6 @@ void Game::update() {
 
 	manager.refresh();
 	manager.update(); // update all entities, so all components
-	int a;
 	for (auto& c : colliders){
 		SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
 		if(Collision::AABB(cCol, tankCol)){
