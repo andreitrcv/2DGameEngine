@@ -132,8 +132,7 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-
-
+ 
 	SDL_Rect tankCol = tank.getComponent<ColliderComponent>().collider;
 	Vector2D tankPos = tank.getComponent<TransformComponent>().position;
 	std::stringstream ss;
