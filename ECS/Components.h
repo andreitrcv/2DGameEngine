@@ -8,4 +8,5 @@
 #include "ProjectileComponent.h"
 #include "UILabel.h"
 #include "TankController.h"
+#include "HealthComponent.h"
 

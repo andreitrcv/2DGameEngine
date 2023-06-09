@@ -25,6 +25,7 @@ Entity& AssetManager::CreatePlayer(){
 	player.addComponent<SpriteComponent>("player", true);
 	//player.addComponent<KeyboardController>();
 	player.addComponent<ColliderComponent>("player");
+    player.addComponent<HealthComponent>();
 	player.addGroup(Game::groupPlayers);
     return player;
 }

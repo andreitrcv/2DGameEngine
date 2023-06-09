@@ -87,6 +87,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	map = new Map("terrain", 3, 32);
 	map->LoadMap("assets/map.map", 25, 20);
 
+	auto& player = Game::assets->CreatePlayer();
+
 /*
 	player.addComponent<TransformComponent>(800.0f, 640.0f, 32, 32, 4);
 	player.addComponent<SpriteComponent>("player", true);
@@ -95,7 +97,6 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	player.addGroup(groupPlayers);
 */
 
-	auto& player = Game::assets->CreatePlayer();
 
 
 	SDL_Color white = {255, 255, 255, 255};
@@ -135,12 +136,15 @@ void Game::update() {
  
 	SDL_Rect tankCol = tank.getComponent<ColliderComponent>().collider;
 	Vector2D tankPos = tank.getComponent<TransformComponent>().position;
+
 	std::stringstream ss;
-	ss << "TANK position: " << tankPos;
+	ss << "Health: " << manager.getGroup(groupPlayers)[0]->getComponent<HealthComponent>().getHealth();
 	label.getComponent<UILabel>().SetLabelText(ss.str(), "arial");
 
 	manager.refresh();
 	manager.update(); // update all entities, so all components
+
+
 	for (auto& c : colliders){
 		SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
 		if(Collision::AABB(cCol, tankCol)){
@@ -153,6 +157,7 @@ void Game::update() {
 			if(Collision::AABB(pl->getComponent<ColliderComponent>().collider, p->getComponent<ColliderComponent>().collider))
 			{
 				p->destroy();
+				pl->getComponent<HealthComponent>().decHealth(10);
 			}
 		}
 	}
